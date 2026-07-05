@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/BlogPostLayout.astro
 title: DICOMO2026参加記
-description: 学会発表のことと、福岡で過ごした時間の思い出をまとめる記事です。
+description: メルキュール福岡宗像リゾート＆スパで開催され第30回DICOMO2026シンポジウムに参加し，研究発表を行いました．
 pubDate: 2026-06-26
 category: Conference
 tags:
