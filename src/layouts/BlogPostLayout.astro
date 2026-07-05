@@ -1,0 +1,26 @@
+---
+import Layout from "./Layout.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+  <section class="page-section">
+    <div class="container narrow">
+      <article class="post-article card">
+        <div class="post-meta">
+          <span class="badge badge-category">{frontmatter.category}</span>
+          <time datetime={frontmatter.pubDate}>{frontmatter.pubDate}</time>
+        </div>
+        <h1>{frontmatter.title}</h1>
+        <p class="post-description">{frontmatter.description}</p>
+        <div class="tag-list">
+          {frontmatter.tags?.map((tag: string) => <span class="badge badge-tag">#{tag}</span>)}
+        </div>
+        <div class="post-body">
+          <slot />
+        </div>
+      </article>
+    </div>
+  </section>
+</Layout>

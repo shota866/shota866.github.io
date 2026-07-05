@@ -1,0 +1,36 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import BlogCard from "../components/BlogCard.astro";
+
+const posts = (await Astro.glob("./blog/*.md")).sort(
+  (a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime()
+);
+---
+
+<Layout title="Blog" description="Markdownで管理するブログ一覧">
+  <section class="page-section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Blog"
+        title="日々の記録"
+        text="記事は src/pages/blog/ にまとめています。旅行、学会、日常の記録を自分で分かりやすく増やせます。"
+      />
+
+      <div class="card-grid blog-grid">
+        {
+          posts.map((post) => (
+            <BlogCard
+              href={post.url}
+              title={post.frontmatter.title}
+              description={post.frontmatter.description}
+              pubDate={post.frontmatter.pubDate}
+              category={post.frontmatter.category}
+              tags={post.frontmatter.tags}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

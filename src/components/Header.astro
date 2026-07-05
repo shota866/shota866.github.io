@@ -1,0 +1,44 @@
+---
+const navItems = [
+  { href: "/#page-top", label: "Home" },
+  { href: "/#intro", label: "自己紹介" },
+  { href: "/#career", label: "経歴" },
+  { href: "/#activity", label: "活動実績" },
+  { href: "/#blog", label: "Blog" },
+  { href: "/#contact", label: "連絡先" }
+];
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">
+      <span class="brand-text">
+        <strong>Shota's Life Log</strong>
+        <small>角ケ谷将太 / Shota Tsunogaya</small>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Main navigation">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            class={
+              item.href.startsWith("/#")
+                ? currentPath === "/"
+                  ? "active"
+                  : undefined
+                : currentPath === item.href || currentPath.startsWith(`${item.href}/`)
+                  ? "active"
+                  : undefined
+            }
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+  </div>
+</header>

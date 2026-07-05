@@ -1,0 +1,55 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import GalleryCard from "../components/GalleryCard.astro";
+
+// 画像を追加したら image に /assets/gallery/... を指定して差し替えます。
+const galleryItems = [
+  {
+    title: "Travel Memory",
+    category: "Travel",
+    caption: "旅先の景色や街歩きの写真をここに追加できます。"
+  },
+  {
+    title: "Daily Snapshot",
+    category: "Daily",
+    caption: "日常のちょっとした記録や空気感を残す場所です。"
+  },
+  {
+    title: "Match Day",
+    category: "Football",
+    caption: "スタジアムでの思い出や観戦記録をまとめられます。"
+  },
+  {
+    title: "Workout Log",
+    category: "Fitness",
+    caption: "ジムや体づくりに関する写真の置き場として使えます。"
+  },
+  {
+    title: "Conference Scene",
+    category: "Conference",
+    caption: "学会参加の写真も、堅くなりすぎず思い出として残せます。"
+  },
+  {
+    title: "Another Story",
+    category: "Travel",
+    caption: "public/assets/gallery/ に画像を入れれば差し替えやすい構成です。"
+  }
+];
+---
+
+<Layout title="Gallery" description="写真の記録">
+  <section class="page-section">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Gallery"
+        title="写真の記録"
+        text="写真は public/assets/gallery/ に入れて、ここでパスを指定するだけで更新できます。"
+      />
+
+      <div class="gallery-grid">
+        {galleryItems.map((item) => <GalleryCard {...item} />)}
+      </div>
+    </div>
+  </section>
+</Layout>

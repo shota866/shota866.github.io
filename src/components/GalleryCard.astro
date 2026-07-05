@@ -1,0 +1,29 @@
+---
+interface Props {
+  title: string;
+  category: string;
+  caption: string;
+  image?: string;
+}
+
+const { title, category, caption, image } = Astro.props;
+---
+
+<article class="card gallery-card">
+  {
+    image ? (
+      <img src={image} alt={title} loading="lazy" />
+    ) : (
+      <div class="gallery-placeholder">
+        <span>{category}</span>
+      </div>
+    )
+  }
+  <div class="gallery-copy">
+    <div class="meta-row">
+      <span class="badge badge-category">{category}</span>
+    </div>
+    <h3>{title}</h3>
+    <p>{caption}</p>
+  </div>
+</article>

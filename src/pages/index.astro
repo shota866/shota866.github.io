@@ -1,0 +1,201 @@
+---
+import Layout from "../layouts/Layout.astro";
+import SectionTitle from "../components/SectionTitle.astro";
+import BlogCard from "../components/BlogCard.astro";
+
+const allPosts = await Astro.glob("./blog/*.md");
+const recentPosts = allPosts
+  .sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime())
+  .slice(0, 2);
+
+const activities = [
+  {
+    date: "2016-10-28",
+    dateLabel: "2016.10.28",
+    title: "袋井市中学生未来会議",
+    text: "袋井市中学生未来会議に参加し、将来のまちづくりについて意見発表を行いました。",
+    href: "https://www.city.fukuroi.shizuoka.jp/material/files/group/15/161001_02-07.pdf"
+  },
+  {
+    date: "2023-09-02",
+    dateLabel: "2023.09.02 - 2023.09.30",
+    title: "短期留学 | アルバータ大学（カナダ）",
+    text: "アルバータ大学で短期留学を行い、現地での学びや生活について静岡大学の留学体験談として紹介されています。",
+    href: "https://www.suoic.shizuoka.ac.jp/student/experience/experience-detail/%E3%82%A2%E3%83%AB%E3%83%90%E3%83%BC%E3%82%BF%E5%A4%A7%E5%AD%A6-2/"
+  },
+  {
+    date: "2026-06-18",
+    dateLabel: "2026.06.18",
+    title: "DICOMO2026",
+    text: "DICOMO2026に参加し、研究発表を行いました。学会参加の記録はブログにも残していく予定です。",
+    href: "https://dicomo.org/"
+  }
+].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+---
+
+<Layout
+  title="Home"
+  description="趣味、旅行、日常、研究をゆるく記録する個人ホームページ"
+>
+  <section class="hero" id="page-top">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="hero-kicker">Shota's Life Log</p>
+        <h1>角ケ谷将太 / Shota Tsunogaya</h1>
+        <p class="hero-tagline">Life, travel, football, and memories.</p>
+        <p class="hero-text">
+          名古屋大学大学院で情報・通信系の研究をしながら、サッカー観戦、旅行、ジム、サウナなどを楽しんでいます。
+          このサイトでは、研究活動だけでなく、日々の出来事や好きなこと、思い出をゆるく記録していきます。
+        </p>
+        <ul class="hero-affiliations">
+          <li>磐田南高等学校</li>
+          <li>静岡大学工学部電気電子工学科</li>
+          <li>名古屋大学工学研究科 情報・通信工学専攻</li>
+        </ul>
+        <div class="hero-actions">
+          <a class="button button-primary" href="/#intro">About</a>
+          <a class="button button-secondary" href="/#blog">Blog</a>
+          <a class="button button-secondary" href="/#contact">Contact</a>
+        </div>
+      </div>
+
+      <div class="hero-photo card">
+        <img src="/assets/profile/profile_fote.png" alt="角ケ谷将太のプロフィール写真" />
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="intro">
+    <div class="container narrow">
+      <SectionTitle
+        eyebrow="About"
+        title="自己紹介"
+      />
+      <div class="card about-card">
+        <div class="about-copy">
+          <p>
+            名古屋大学大学院で情報・通信系の研究をしている大学院生です。
+          </p>
+          <p>
+            サッカー観戦や旅行，ドライブ，ジム，サウナ，ネトフリなどが趣味です。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="career">
+    <div class="container narrow">
+      <SectionTitle
+        eyebrow="Career"
+        title="経歴"
+      />
+      <div class="career-timeline">
+        <article class="career-item">
+          <div class="career-dot"></div>
+          <div class="career-body card">
+            <p class="career-label">High School</p>
+            <h3>静岡県立磐田南高等学校</h3>
+            <p class="career-period">2018年4月入学 / 2021年3月卒業</p>
+            <p>
+              所属:
+              <a href="https://www.edu.pref.shizuoka.jp/iwataminami-h/" target="_blank" rel="noreferrer">
+                普通科
+              </a>
+            </p>
+          </div>
+        </article>
+        <article class="career-item">
+          <div class="career-dot"></div>
+          <div class="career-body card">
+            <p class="career-label">Undergraduate</p>
+            <h3>国立大学法人静岡大学</h3>
+            <p class="career-period">2021年4月入学 / 2025年3月卒業</p>
+            <p>
+              所属:
+              <a href="https://idl.rie.shizuoka.ac.jp/~kagawa/annai/index.html" target="_blank" rel="noreferrer">
+                工学部電気電子工学科 / 香川研究室
+              </a>
+            </p>
+          </div>
+        </article>
+        <article class="career-item">
+          <div class="career-dot"></div>
+          <div class="career-body card">
+            <p class="career-label">Graduate School</p>
+            <h3>国立大学法人名古屋大学大学院</h3>
+            <p class="career-period">2025年4月入学 / 2027年3月卒業</p>
+            <p>
+              所属:
+              <a href="https://www.ucl.nuee.nagoya-u.ac.jp/" target="_blank" rel="noreferrer">
+                工学研究科 情報・通信工学専攻 / 河口研究室
+              </a>
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="activity">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Activity"
+        title="活動実績"
+      />
+      <div class="activity-timeline">
+        {activities.map((activity) => (
+          <article class="activity-item">
+            <div class="activity-date">{activity.dateLabel}</div>
+            <a class="activity-body card" href={activity.href} target="_blank" rel="noreferrer">
+              <h3>{activity.title}</h3>
+              <p>{activity.text}</p>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="blog">
+    <div class="container">
+      <SectionTitle
+        eyebrow="Recent Posts"
+        title="最近のブログ記事"
+      />
+      <div class="card-grid blog-grid">
+        {
+          recentPosts.map((post) => (
+            <BlogCard
+              href={post.url}
+              title={post.frontmatter.title}
+              description={post.frontmatter.description}
+              pubDate={post.frontmatter.pubDate}
+              category={post.frontmatter.category}
+              tags={post.frontmatter.tags}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="page-section" id="contact">
+    <div class="container narrow">
+      <SectionTitle
+        eyebrow="Contact"
+        title="連絡先"
+      />
+      <div class="contact-list card">
+        <a href="https://github.com/shota866" target="_blank" rel="noreferrer">
+          <span>GitHub</span>
+          <span>github.com/shota866</span>
+        </a>
+        <a href="mailto:tsunogaya.shota@gmail.com">
+          <span>Email</span>
+          <span>tsunogaya.shota@gmail.com</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
